@@ -2,35 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello User</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Add Items</title>
 </head>
 <body>
 <div class="container">
     <div class="content">
         <div>
             <label for="item">Item</label>
-            <input type="text" id="item">
+            <input type="text" id="item" name="item">
         </div>
-        <button name="Hello">Add item</button>
-        <p id="id"></p>
+        <button id="add">Add Item</button>
+        <ul class="itemList"></ul>
+
     </div>
 </div>
 <script>
-    const firstName = document.getElementById('first');
-    const lastName = document.getElementById('last');
-    const Id = document.getElementById('id');
-    const submitButton = document.querySelector('[name="Hello"]');
+    const item = document.getElementById('item');
+    const submit = document.getElementById('add');
+    const myList = document.querySelector('ul');
 
-
-    submitButton.addEventListener('click',function (){
-        const hello = document.createElement('p');
-        let first = firstName.value;
-        let last = lastName.value;
-        let Name = `Hello ${first} ${last}!`;
-        hello.textContent = Name;
-        Id.insertAdjacentElement('afterbegin',hello)
-    })
+    function addItem(){
+        let itemName = item.value;
+        //
+        let newItem = document.createElement('li');
+        newItem.innerHTML = `${itemName}`
+        newItem.addEventListener('click', function(){
+            newItem.remove();
+        })
+        myList.appendChild(newItem);
+        item.value = "";
+    }
+    submit.addEventListener('click', addItem);
 </script>
 </body>
 </html>
